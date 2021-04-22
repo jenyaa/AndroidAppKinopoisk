@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kinopoisk</string>
+    <string name="invite_friend">Invite friend</string>
+    <string name="list_favorites">Favorites</string>
+    <string name="details">Details</string>
+</resources>
