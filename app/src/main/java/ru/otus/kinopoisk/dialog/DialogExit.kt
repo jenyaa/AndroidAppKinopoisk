@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import ru.otus.kinopoisk.R
 
-class CustomDialog(context: Context, private val activity: Activity) : Dialog(context) {
+class DialogExit(context: Context, private val activity: Activity) : Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

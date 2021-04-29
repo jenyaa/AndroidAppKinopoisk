@@ -1,4 +1,4 @@
-package ru.otus.kinopoisk.activity
+package ru.otus.kinopoisk.details
 
 import android.app.Activity
 import android.content.Intent
@@ -10,8 +10,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import ru.otus.kinopoisk.R
-import ru.otus.kinopoisk.data.DetailsData
-import ru.otus.kinopoisk.data.DetailsResultData
 
 class DetailsActivity : AppCompatActivity() {
     companion object {

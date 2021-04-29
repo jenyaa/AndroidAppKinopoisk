@@ -1,10 +1,11 @@
-package ru.otus.kinopoisk.recyclerView
+package ru.otus.kinopoisk.films
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.otus.kinopoisk.R
+import ru.otus.kinopoisk.films.FilmItem
 
 class FilmItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val imageFilm : ImageView = itemView.findViewById(R.id.imageFilm)

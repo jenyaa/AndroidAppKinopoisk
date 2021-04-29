@@ -1,10 +1,12 @@
-package ru.otus.kinopoisk.recyclerView
+package ru.otus.kinopoisk.films
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.otus.kinopoisk.R
+import ru.otus.kinopoisk.data.DataItems
 
 class FilmAdapter(private val items: List<FilmItem>, private val clickListener: FilmClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -25,7 +27,6 @@ class FilmAdapter(private val items: List<FilmItem>, private val clickListener: 
             val view = layoutInflater.inflate(R.layout.item_header, parent, false)
             FilmHeaderViewHolder(view)
         }
-
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -38,6 +39,10 @@ class FilmAdapter(private val items: List<FilmItem>, private val clickListener: 
 
             val item = items[position - 1]
             holder.bind(item)
+
+            holder.itemView.setOnClickListener {
+                clickListener.onDetailsClick(item)
+            }
 
             //кнопка детали
             holder.buttonDetail.setOnClickListener {
@@ -55,17 +60,16 @@ class FilmAdapter(private val items: List<FilmItem>, private val clickListener: 
 
             //кнопка сердечко рядом с фильмом
             holder.imageFavorite.setOnClickListener {
-                clickListener.onFavoriteClick(item, favoritePositionAdapter)
-                if (favoritePositionAdapter != 0) {
-                    items[favoritePositionAdapter - 1].isFavorite = false
-                    favoritePositionAdapter = position
+                favoritePositionAdapter = position
+                if (!items[favoritePositionAdapter - 1].isFavorite) {
+                    clickListener.onFavoriteClick(item, favoritePositionAdapter)
                     items[favoritePositionAdapter - 1].isFavorite = true
-                } else {
-                    favoritePositionAdapter = position
-                    items[favoritePositionAdapter - 1].isFavorite = true
+                    DataItems.favoriteItems.add(item)
+                    notifyDataSetChanged()
                 }
-                notifyDataSetChanged()
             }
+
+
         } else if (holder is FilmHeaderViewHolder) {
 
             //кнопка пригласить друга

@@ -1,4 +1,4 @@
-package ru.otus.kinopoisk.recyclerView
+package ru.otus.kinopoisk.films
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

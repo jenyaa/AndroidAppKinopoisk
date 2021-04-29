@@ -12,15 +12,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.otus.kinopoisk.activity.DetailsActivity
-import ru.otus.kinopoisk.activity.FavoriteActivity
-import ru.otus.kinopoisk.data.FavoriteData
-import ru.otus.kinopoisk.data.FavoriteResultData
-import ru.otus.kinopoisk.data.DetailsData
-import ru.otus.kinopoisk.data.DetailsResultData
-import ru.otus.kinopoisk.dialog.CustomDialog
-import ru.otus.kinopoisk.recyclerView.FilmAdapter
-import ru.otus.kinopoisk.recyclerView.FilmItem
+import ru.otus.kinopoisk.data.DataItems
+import ru.otus.kinopoisk.details.DetailsActivity
+import ru.otus.kinopoisk.favorite.FavoriteActivity
+import ru.otus.kinopoisk.details.DetailsData
+import ru.otus.kinopoisk.details.DetailsResultData
+import ru.otus.kinopoisk.dialog.DialogExit
+import ru.otus.kinopoisk.favorite.FavoriteResultData
+import ru.otus.kinopoisk.films.FilmAdapter
+import ru.otus.kinopoisk.films.FilmItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,37 +28,37 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_ID_FAVORITE = "EXTRA_ID_FAVORITE"
         const val EXTRA_DELETE_ID_FAVORITE = "EXTRA_DELETE_ID_FAVORITE"
         const val REQUEST_CODE = 1
-        const val REQUEST_CODE_FAVORITE = 1
     }
 
     private val recyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerView) }
-    private val items: MutableList<FilmItem> = mutableListOf()
-    private var favoriteItems: MutableList<FilmItem> = mutableListOf()
-    var favoriteId: Int = -1
-    var checkFavoriteItem: Int = -1
+    var items: MutableList<FilmItem> = mutableListOf()
+    var favoriteItems: MutableList<FilmItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        items = DataItems.items
+        favoriteItems = DataItems.favoriteItems
 
         initRecyclerView()
-        initItemsList()
 
 
         //получение данных при повороте экрана
         savedInstanceState?.getInt(EXTRA_ID_FAVORITE)?.let {
-            checkFavoriteItem = it
-            favoriteId = it
-            items[favoriteId].isFavorite = true
-            favoriteItems.add(0, items[favoriteId])
+            DataItems.checkFavoriteItem = it
+            DataItems.favoriteId = it
+            items[DataItems.favoriteId].isFavorite = true
+            favoriteItems.add(0, items[DataItems.favoriteId])
+            recyclerView.adapter?.notifyDataSetChanged()
+
         }
 
         //получение данных из FavoriteActivity
         intent.getParcelableExtra<FavoriteResultData>(EXTRA_DELETE_ID_FAVORITE)?.let {
-            items[it.idFavoriteFilm].isFavorite = false
+            recyclerView.adapter?.notifyDataSetChanged()
         }
-
     }
+
 
     //инициализации RecyclerView
     private fun initRecyclerView() {
@@ -96,29 +96,20 @@ class MainActivity : AppCompatActivity() {
             //кнопка нажатия на сердечко рядом с фильмом
             override fun onFavoriteClick(item: FilmItem, positionFavAdapter: Int) {
 
-                if (checkFavoriteItem != -1) {
-                    items[checkFavoriteItem].isFavorite =
+                if (DataItems.checkFavoriteItem != -1) {
+                    items[DataItems.checkFavoriteItem].isFavorite =
                         false //устанавливает фильму значение false, если фильм был выбран при повороте экрана
                 }
 
-                favoriteItems.add(0, item)
-                favoriteId = positionFavAdapter
+                DataItems.favoriteId = positionFavAdapter
             }
 
             //кнопка перехода в список избранного
             override fun onFavoriteListClick(positionFavAdapter: Int) {
 
                 //переход при наличии фильмов в списке избранного
-                if (favoriteId != -1) {
-                    intentFavoriteActivity.putExtra(
-                        FavoriteActivity.EXTRA_DATA_FAVORITE,
-                        FavoriteData(
-                            favoriteItems[0].imageFilm,
-                            favoriteItems[0].titleFilm,
-                            positionFavAdapter
-                        )
-                    )
-                    startActivityForResult(intentFavoriteActivity, REQUEST_CODE_FAVORITE)
+                if (DataItems.favoriteId != -1) {
+                    startActivity(intentFavoriteActivity)
                 }
 
                 //переход при пустом списке избранного
@@ -152,9 +143,7 @@ class MainActivity : AppCompatActivity() {
                 outState.putInt(EXTRA_ID_FAVORITE, checkList)
             }
             checkList++
-
         }
-
     }
 
     //возвращение результатов чекбокса и комментария из DetailsActivity
@@ -175,7 +164,7 @@ class MainActivity : AppCompatActivity() {
 
     //диалог при выходе из приложения
     override fun onBackPressed() {
-        val dialog: Dialog = CustomDialog(this, this)
+        val dialog: Dialog = DialogExit(this, this)
         dialog.show()
     }
 
@@ -189,102 +178,5 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    //инициализация списка фильмов
-    private fun initItemsList() {
-        items.add(
-            FilmItem(
-                R.drawable.somelikehot, resources.getString(R.string.title_film_somelikehot),
-                resources.getString(R.string.description_film_somelikehot), 0, false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.deadpoetssociety,
-                resources.getString(R.string.title_film_deadpoetssociety),
-                resources.getString(R.string.description_film_deadpoetssociety),
-                0,
-                false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.thewolfofwallstreet,
-                resources.getString(R.string.title_film_thewolfofwallstreet),
-                resources.getString(R.string.description_film_thewolfofwallstreet),
-                0,
-                false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.piratesofthecaribbean,
-                resources.getString(R.string.title_film_piratesofthecaribbean),
-                resources.getString(R.string.description_film_piratesofthecaribbean),
-                0,
-                false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.theboyinthestripedpyjamas,
-                resources.getString(R.string.title_film_theboyinthestripedpyjamas),
-                resources.getString(R.string.description_film_theboyinthestripedpyjamas),
-                0,
-                false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.thehobbit, resources.getString(R.string.title_film_thehobbit),
-                resources.getString(R.string.description_thehobbit), 0, false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.knockinonheavensdoor,
-                resources.getString(R.string.title_film_knockinonheavensdoor),
-                resources.getString(R.string.description_film_knockinonheavensdoor),
-                0,
-                false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.thegreenmile, resources.getString(R.string.title_film_thegreenmile),
-                resources.getString(R.string.description_film_thegreenmile), 0, false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.goodwillhunting,
-                resources.getString(R.string.title_film_goodwillhunting),
-                resources.getString(R.string.description_film_goodwillhunting),
-                0,
-                false
-            )
-        )
-
-        items.add(
-            FilmItem(
-                R.drawable.lifeisbeautiful,
-                resources.getString(R.string.title_film_lifeisbeautiful),
-                resources.getString(R.string.description_film_lifeisbeautiful),
-                0,
-                false
-            )
-        )
-    }
 }
-
-
-
-
 
