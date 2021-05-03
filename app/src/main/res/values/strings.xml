@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">Kinopoisk</string>
+    <string name="invite_friend">Пригласить друга</string>
+    <string name="list_favorites">Избранное</string>
+    <string name="details">Детали</string>
+
+    <string name="title_film_somelikehot" translatable="false">В джазе только девушки</string>
+    <string name="description_film_somelikehot" translatable="false">Когда чикагские музыканты Джо и Джерри случайно становятся свидетелями бандитской перестрелки, они в срочном порядке смываются на поезде во Флориду, прикинувшись женщинами. Теперь они - Джозефина и Дафна, новенькие и хорошенькие инструменталистки женского джаз-бэнда. </string>
+
+    <string name="title_film_deadpoetssociety" translatable="false">Общество мертвых поэтов</string>
+    <string name="description_film_deadpoetssociety" translatable="false">Джон Китинг — новый преподаватель английской словесности в консервативном американском колледже. От чопорной массы учителей его выгодно отличают легкость общения, эксцентричное поведение и пренебрежение к программе обучения. </string>
+
+    <string name="title_film_thewolfofwallstreet" translatable="false">Волк с Волл Стрит</string>
+    <string name="description_film_thewolfofwallstreet" translatable="false">1987 год. Джордан Белфорт становится брокером в успешном инвестиционном банке. Вскоре банк закрывается после внезапного обвала индекса Доу-Джонса. По совету жены Терезы Джордан устраивается в небольшое заведение, занимающееся мелкими акциями. Его настойчивый стиль общения с клиентами и врождённая харизма быстро даёт свои плоды.</string>
+
+    <string name="title_film_piratesofthecaribbean" translatable="false">Пираты Карибского моря</string>
+    <string name="description_film_piratesofthecaribbean" translatable="false">Новые приключения Джека Воробья и его друзей Уилла Тернера и Элизабет Суонн. На этот раз Уиллу и Элизабет придется объединиться с самим Капитаном Барбоссой для того, чтобы отправиться на край света и спасти своего друга.</string>
+
+    <string name="title_film_theboyinthestripedpyjamas" translatable="false">Мальчик в полосатой пижаме</string>
+    <string name="description_film_theboyinthestripedpyjamas" translatable="false">История, происходящая во время Второй мировой войны и показанная сквозь глаза невинного и ничего не подозревающего о происходящих событиях Бруно, восьмилетнего сына коменданта концентрационного лагеря.</string>
+
+    <string name="title_film_thehobbit" translatable="false">Хоббит</string>
+    <string name="description_thehobbit" translatable="false">Хоббит Бильбо Бэггинс пускается в грандиозный поход, целью которого является отвоевание утраченного королевства гномов Эребор у дракона Смауга. Совершенно неожиданно с хоббитом налаживает контакт волшебник Гэндальф Серый.</string>
+
+    <string name="title_film_knockinonheavensdoor" translatable="false">Достучаться до небес</string>
+    <string name="description_film_knockinonheavensdoor" translatable="false">Судьба сводит двух незнакомцев в больнице, где они получают смертельные диагнозы. Но парни не хотят мириться с судьбой и тихо заканчивать свои дни в больничной палате - угнав машину с миллионом немецких марок в багажнике, они сбегают из больницы.</string>
+
+    <string name="title_film_thegreenmile" translatable="false">Зеленая миля</string>
+    <string name="description_film_thegreenmile" translatable="false">Пол Эджкомб - начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.</string>
+
+    <string name="title_film_goodwillhunting" translatable="false">Умница Уилл Хантинг</string>
+    <string name="description_film_goodwillhunting" translatable="false">Уилл Хантинг - 20-летний вундеркинд из Бостона, который то и дело ввязывается в неприятные истории. И когда полиция арестовывает его за очередную драку, профессор математики берет его под свою опеку, но при одном условии: Уилл должен пройти курс психотерапии. Сеансы «перевоспитания», начавшиеся с недоверия, постепенно перерастают в дружбу между Уиллом и его наставником.</string>
+
+    <string name="title_film_lifeisbeautiful" translatable="false">Жизнь прекрасна</string>
+    <string name="description_film_lifeisbeautiful" translatable="false">Во время Второй мировой войны из Италии в концлагерь были отправлены евреи - отец с маленьким сыном. Жена-итальянка добровольно последовала за ними. В лагере отец сказал мальчику, что всё происходящее вокруг является большой интересной игрой за приз в виде настоящего танка. И этот классный приз достанется тому мальчику, который сможет не попасться на глаза надзирателям.</string>
+
+
 </resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/imageFilm"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/titleFilm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/imageFilm"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDetails"
+        android:layout_marginStart="30dp"
+        tools:text="Название фильма"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/buttonDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imageFilm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/details"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorAccent"/>
+
+    <ImageView
+        android:id="@+id/imageFavorite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toEndOf="@+id/buttonDetails"
+        app:layout_constraintTop_toTopOf="@+id/buttonDetails"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/ic_baseline_favorite_border_24"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
