@@ -7,8 +7,12 @@ import ru.otus.kinopoisk.R
 import ru.otus.kinopoisk.data.DataItems
 import ru.otus.kinopoisk.films.FilmItem
 
-class FavoriteAdapter(private val favoriteItems: List<FilmItem>, private val clickListener: FavoriteClickListener) :
+class FavoriteAdapter(
+    private val layoutInflater: LayoutInflater,
+    private val favoriteItems: List<FilmItem>
+) :
     RecyclerView.Adapter<FavoriteViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,7 +26,6 @@ class FavoriteAdapter(private val favoriteItems: List<FilmItem>, private val cli
         holder.bind(item)
 
         holder.favoriteImageDelete.setOnClickListener {
-            clickListener.onDeleteClick(item, idFilm)
             DataItems.favoriteItems.removeAt(position)
             DataItems.items[idFilm].isFavorite = false
             notifyDataSetChanged()
@@ -30,12 +33,5 @@ class FavoriteAdapter(private val favoriteItems: List<FilmItem>, private val cli
     }
 
     override fun getItemCount() = favoriteItems.size
-
-    interface FavoriteClickListener {
-        fun onDeleteClick(filmItem: FilmItem, int: Int){
-
-        }
-    }
-
 }
 
