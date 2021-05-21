@@ -14,8 +14,9 @@ class DialogExit(context: Context, private val activity: Activity) : Dialog(cont
         setContentView(R.layout.dialog_back)
         val buttonTrue = findViewById<View>(R.id.buttonTrue)
         val buttonFalse = findViewById<View>(R.id.buttonFalse)
+
         //кнопка выхода
-        buttonTrue.setOnClickListener{
+        buttonTrue.setOnClickListener {
             activity.finish()
         }
 
